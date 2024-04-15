@@ -29,7 +29,7 @@ run_id_mod = latest_version.run_id
 print(f"O run_id da última versão do modelo '{run_name_dev}' é: {run_id_mod}")
 
 # run_id_mod = "d7910a20f26e4e9ba7f470e9db3d40b5"  # ID do run específico do modelo
-run_id_apk = "8e37ce90cc2b4f1d9fad82ba4b4fe246"  # ID do run específico da aplicação
+run_id_apk = "905bde61aa85413db8a245ea54b3da5f"  # ID do run específico da aplicação
 name_apk = "prediction_proba.parquet"
 name_mod = "tune_test.parquet"
 target = 'shot_made_flag'

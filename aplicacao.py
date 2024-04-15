@@ -46,11 +46,6 @@ with mlflow.start_run(experiment_id=experiment_id, run_name = 'PipelineAplicacao
     data_prod['predict_proba'] = Y[:, 1]  # Adiciona a probabilidade de uma das classes, se binário
     data_prod['operation_label'] = (data_prod['predict_proba'] >= threshold).astype(int)
 
-
-    Z = loaded_model.predict(data_prod[col_2])
-    data_prod['predict_score'] = Z  # Adiciona predições de classe
-
-
     print(metrics.classification_report(data_prod[target], data_prod['operation_label']))
 
     # # LOG DE METRICAS GLOBAIS
@@ -91,9 +86,10 @@ with mlflow.start_run(experiment_id=experiment_id, run_name = 'PipelineAplicacao
     mlflow.log_metric("Especificidade Controle", specificity_m)
     mlflow.log_metric("Sensibilidade Controle", sensibility_m)
     mlflow.log_metric("Precisao Controle", precision_m)
+    mlflow.log_metric('log_loss',log_loss(data_prod.shot_made_flag, data_prod.predict_proba))
+    mlflow.log_metric('f1', f1_score(data_prod.shot_made_flag, data_prod.operation_label))
     
 
     data_prod.to_parquet('data/processed/prediction_proba.parquet')
     mlflow.log_artifact('data/processed/prediction_proba.parquet')
-    mlflow.log_metric('log_loss',log_loss(data_prod.shot_made_flag, data_prod.predict_proba))
-    mlflow.log_metric('f1', f1_score(data_prod.shot_made_flag, data_prod.predict_score))
+
