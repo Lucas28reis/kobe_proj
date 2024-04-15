@@ -152,7 +152,7 @@ auc_dev = auc(fpr_dev, tpr_dev)
 # Plotando as curvas ROC
 fig, ax = plt.subplots(figsize=(5, 3))
 plt.plot(fpr_prod, tpr_prod, label=f'Produção (AUC = {auc_prod:.2f})')
-plt.plot(fpr_dev, tpr_dev, label=f'Desenvolviemnto (AUC = {auc_dev:.2f})')
+plt.plot(fpr_dev, tpr_dev, label=f'Desenvolvimento (AUC = {auc_dev:.2f})')
 
 # Adicionando elementos gráficos
 plt.plot([0, 1], [0, 1], 'k--')
